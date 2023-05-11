@@ -1,0 +1,12 @@
+D:\Sources\BlazorAuth\obj\Debug\net7.0\BlazorAuth.csproj.AssemblyReference.cache
+D:\Sources\BlazorAuth\obj\Debug\net7.0\BlazorAuth.GeneratedMSBuildEditorConfig.editorconfig
+D:\Sources\BlazorAuth\obj\Debug\net7.0\BlazorAuth.AssemblyInfoInputs.cache
+D:\Sources\BlazorAuth\obj\Debug\net7.0\BlazorAuth.AssemblyInfo.cs
+D:\Sources\BlazorAuth\obj\Debug\net7.0\BlazorAuth.csproj.CoreCompileInputs.cache
+D:\Sources\BlazorAuth\bin\Debug\net7.0\BlazorAuth.deps.json
+D:\Sources\BlazorAuth\bin\Debug\net7.0\BlazorAuth.dll
+D:\Sources\BlazorAuth\bin\Debug\net7.0\BlazorAuth.pdb
+D:\Sources\BlazorAuth\obj\Debug\net7.0\BlazorAuth.dll
+D:\Sources\BlazorAuth\obj\Debug\net7.0\refint\BlazorAuth.dll
+D:\Sources\BlazorAuth\obj\Debug\net7.0\BlazorAuth.pdb
+D:\Sources\BlazorAuth\obj\Debug\net7.0\ref\BlazorAuth.dll
