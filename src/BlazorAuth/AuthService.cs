@@ -14,6 +14,7 @@ public class AuthService : IAuthService {
     public List<UserRolesModel> UserRoles { get; set; }
     public List<UserModel> Users { get; set; }
     public List<RoleModel> Roles { get; set; }
+    public List<UserSessionModel> Sessions { get; set; }
     public UserModel User { get; set; }
     public UserSessionModel? UserSession { get; set; }
 
@@ -28,6 +29,7 @@ public class AuthService : IAuthService {
         UserRoles = new List<UserRolesModel>();
         Users = new List<UserModel>();
         Roles = new List<RoleModel>();
+        Sessions = new List<UserSessionModel>();
         User = new UserModel();
         UserSession = new UserSessionModel();
         AutoLogon();
@@ -66,6 +68,9 @@ public class AuthService : IAuthService {
         foreach (var userRole in UserRoles) {
             userRole.Role = AuthContext.Roles.FirstOrDefault(t => t.Id.Equals(userRole.RoleId));
         }
+
+        UserSession.LastUsingTime = DateTime.Now.ToInt();
+        await AuthContext.SaveChangesAsync();
     }
 
     private async Task ClearAuth() {
@@ -139,6 +144,25 @@ public class AuthService : IAuthService {
 
     public void LoadUsers() {
         Users = AuthContext.Users.ToList();
+    }
+
+    public void LoadSessions(bool enrichSession = false) {
+        Sessions = AuthContext.UserSessions
+            .Select(t =>
+                new UserSessionModel {
+                    Id = t.Id,
+                    UserId = t.UserId,
+                    RemoteAddress = t.RemoteAddress,
+                    GeneratedTime = t.GeneratedTime,
+                    LastUsingTime = t.LastUsingTime,
+                }
+            ).ToList();
+        if (enrichSession) {
+            LoadUsers();
+            foreach (var session in Sessions) {
+                session.User = Users.FirstOrDefault(t => t.Id.Equals(session.UserId));
+            }
+        }
     }
 
     public void SaveUser(UserModel user) {

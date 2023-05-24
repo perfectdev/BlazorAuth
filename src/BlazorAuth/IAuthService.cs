@@ -7,6 +7,7 @@ public interface IAuthService {
     List<UserRolesModel> UserRoles { get; set; }
     List<RoleModel> Roles { get; set; }
     List<UserModel> Users { get; set; }
+    List<UserSessionModel> Sessions { get; set; }
     UserModel User { get; set; }
     UserSessionModel UserSession { get; set; }
     bool IsAuthorized { get; }
@@ -17,6 +18,7 @@ public interface IAuthService {
     IPAddress? GetRemoteIpAddress();
     void LoadUsers();
     void LoadRoles();
+    void LoadSessions(bool enrichSession = false);
     void SaveUser(UserModel user);
     void DeleteUser(UserModel user);
     List<UserRolesModel> GetUserRoles(UserModel user);
