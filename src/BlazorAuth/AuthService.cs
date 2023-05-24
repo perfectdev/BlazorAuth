@@ -105,6 +105,7 @@ public class AuthService : IAuthService {
             RemoteAddress = GetRemoteIpAddress()!.ToString(),
             UserId = user.Id,
             GeneratedTime = DateTime.Now.ToInt(),
+            LastUsingTime = DateTime.Now.ToInt(),
         };
         var checkTime = DateTime.Now.AddDays(-AuthTokenDaysExpired).ToInt();
         var oldestSessions = AuthContext.UserSessions.Where(t => t.GeneratedTime < checkTime).ToList();
