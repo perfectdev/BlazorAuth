@@ -50,9 +50,17 @@ Extract AuthTokenDaysExpired parameter value from `appsettings.json`:
 ```C#
 int.TryParse(builder.Configuration["AuthTokenDaysExpired"], out var authTokenDaysExpired);
 ```
-Implementing the context of your database:
+Implementing the context of your database (input your assembly):
 ```C#
-builder.Services.AddDbContext<AuthContext>(options => options.UseSqlite(authConnectionString));
+builder.Services.AddDbContext<AuthContext>(options => options.UseSqlite(authConnectionString), o => o.MigrationsAssembly("YourAssembly"))
+                                                     .LogTo(Console.WriteLine, LogLevel.Information)
+                                                     .EnableSensitiveDataLogging()
+                                                     .EnableDetailedErrors());
+```
+You need to create a migration of the AuthContext tables:
+```
+Add-Migration AuthTables -context AuthContext
+Update-Database -context AuthContext
 ```
 Implementing the HttpContextAccessor:
 ```C#

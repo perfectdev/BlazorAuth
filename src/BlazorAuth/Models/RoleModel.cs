@@ -1,10 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlazorAuth.Models;
 
-[PrimaryKey(nameof(Id))]
+[Table("Roles"), PrimaryKey(nameof(Id))]
 public class RoleModel : BaseModel {
-    public string Id { get; set; } = Guid.NewGuid().ToString("N").ToUpper();
-    public string Name { get; set; } = string.Empty;
+    [MaxLength(32)] public string Id { get; set; } = Guid.NewGuid().ToString("N").ToUpper();
+    [MaxLength(255)] public string Name { get; set; } = string.Empty;
     public override string ToString() => $"{Id}: {Name}";
 }
